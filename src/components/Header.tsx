@@ -1,4 +1,5 @@
 import Button from "./ui/Button";
+import { User } from "lucide-react"
 
 export default function Header() {
 
@@ -9,9 +10,10 @@ export default function Header() {
             </div>
             <div className="flex gap-5">
                 <Button name="Início" href="/" />
-                <Button name="Meus alertas" href="alertas"/>
+                <Button name="Meus alertas" href="/alertas" />
             </div>
-            <div className="mr-10">
+            <div className="flex mr-10 gap-1 hover:bg-gray-500 p-2 rounded-xl">
+                <User size={20}></User>
                 <p>Conta</p>
             </div>
         </header>
