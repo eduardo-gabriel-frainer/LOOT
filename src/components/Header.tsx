@@ -6,9 +6,9 @@ export default function Header() {
     return (
         <header className="flex justify-between items-center text-gray-300 p-2 border-b border-gray-600">
             <div className="ml-10">
-                LOOT
+                <img src="/images/1.png" className="w-30" />
             </div>
-            <div className="flex gap-5">
+            <div className="flex gap-5 -ml-25">
                 <Button name="Início" href="/" />
                 <Button name="Meus alertas" href="/alertas" />
             </div>
