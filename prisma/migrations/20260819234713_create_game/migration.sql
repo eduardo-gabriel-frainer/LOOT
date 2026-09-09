@@ -1,5 +1,5 @@
 -- CreateTable
-CREATE TABLE `Game` (
+CREATE TABLE `Games` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `appId` INTEGER NOT NULL,
     `name` VARCHAR(191) NOT NULL,
