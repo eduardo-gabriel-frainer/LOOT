@@ -1,15 +1,7 @@
 "use client"
 
 import { useState } from "react"
-
-const GAMES = [
-    "Valorant",
-    "League of Legends",
-    "Counter-Strike 2",
-    "GTA V",
-    "Cyberpunk 2077",
-    "Minecraft"
-]
+import { GAMES } from "@/app/mocks/games"
 
 type DataListProps = {
     value: string
@@ -36,10 +28,10 @@ export default function DataList({ value, onChange }: DataListProps) {
             />
 
             {isFocused && filteredGames.length > 0 && (
-                <ul className="absolute left-0 top-full mt-3 w-full bg-slate-900/95 backdrop-blur-md border border-blue-500/40 rounded-b-lg shadow-2xl py-1.5 z-50 overflow-hidden divide-y divide-slate-800/40">
-                    {filteredGames.map((game) => (
+                <ul className="absolute left-0 top-full mt-3 w-full bg-slate-900/95 max-h-100 overflow-y-auto backdrop-blur-md border border-blue-500/40 rounded-b-lg shadow-2xl py-1.5 z-50 overflow-hidden divide-y divide-slate-800/40">
+                    {filteredGames.map((game, index) => (
                         <li
-                            key={game}
+                            key={index}
                             onClick={() => onChange(game)}
                             className="px-4 py-2.5 text-sm text-slate-300 hover:bg-blue-600 hover:text-white cursor-pointer transition-all duration-150 flex items-center justify-between font-medium"
                         >

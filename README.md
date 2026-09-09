@@ -9,3 +9,4 @@ DATABASE_URL="mysql://root@localhost:3306/LOOT"
 3) rode as migrations
 
 npx prisma migrate deploy
+npm run dev
