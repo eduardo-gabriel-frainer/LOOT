@@ -3,7 +3,8 @@ CREATE TABLE `Games` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `appId` INTEGER NOT NULL,
     `name` VARCHAR(191) NOT NULL,
-    `image` VARCHAR(191) NULL,
+    `image` VARCHAR(500) NULL,
+    `description` TEXT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
 
