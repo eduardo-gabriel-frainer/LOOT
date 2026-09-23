@@ -6,11 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "job:get_jogos": "node --env-file=.env --import=tsx src/app/jobs/get_jogos_steam.ts"
+    "job:get_jogos": "node --env-file=.env --import=tsx src/jobs/get_jogos_steam.ts"
   },
   "dependencies": {
+    "@prisma/adapter-mariadb": "^7.10.0",
     "@prisma/client": "^7.9.1",
     "lucide-react": "^1.33.0",
+    "mariadb": "^3.5.4",
     "next": "16.3.0",
     "prisma": "^7.9.1",
     "react": "19.2.8",

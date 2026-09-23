@@ -3,15 +3,20 @@
 import { useState } from "react"
 import { Search as SearchIcon } from "lucide-react"
 import DataList from "./DataList"
+import { gameSave } from "@/types/types"
 
-export default function Search() {
+type SearchProps = {
+    games: gameSave[]
+}
+
+export default function Search({games}: SearchProps) {
     const [searchValue, setSearchValue] = useState("")
 
     return (
         <div className="flex border border-blue-500 w-150 justify-between p-2 rounded-lg mt-10 items-center">
             <div className="flex gap-4 items-center flex-1 pr-4">
                 <SearchIcon className="text-gray-400 shrink-0" />
-                <DataList value={searchValue} onChange={setSearchValue} />
+                <DataList value={searchValue} onChange={setSearchValue} games={games}/>
             </div>
 
             <button

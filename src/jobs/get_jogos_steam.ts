@@ -1,3 +1,4 @@
+import { saveGames } from "@/services/saveGames";
 
 async function main() {
     try {
@@ -8,7 +9,7 @@ async function main() {
             throw new Error("STEAM_API_KEY não foi configurada");
         }
 
-        const API_STEAM = `https://api.steampowered.com/IStoreService/GetAppList/v1/?key=${apiKey}&max_results=5`;
+        const API_STEAM = `https://api.steampowered.com/IStoreService/GetAppList/v1/?key=${apiKey}`;
 
         const response = await fetch(API_STEAM)
 
@@ -21,7 +22,9 @@ async function main() {
         const data = await response.json()
 
         console.log(JSON.stringify(data, null, 2));
-        
+
+        saveGames(data.response.apps)
+
     } catch (e) {
         throw new Error(
             `Deu ruim na função de pegar os jogos ${e}`

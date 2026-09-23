@@ -1,18 +1,19 @@
 "use client"
 
 import { useState } from "react"
-import { GAMES } from "@/app/mocks/games"
+import { gameSave } from "@/types/types"
 
 type DataListProps = {
     value: string
     onChange: (value: string) => void
+    games: gameSave[]
 }
 
-export default function DataList({ value, onChange }: DataListProps) {
+export default function DataList({ value, onChange, games }: DataListProps) {
     const [isFocused, setIsFocused] = useState(false)
 
     const filteredGames = value
-        ? GAMES.filter((game) => game.toLowerCase().includes(value.toLowerCase()))
+        ? games.filter((game) => game.name.toLowerCase().includes(value.toLowerCase()))
         : []
 
     return (
@@ -32,10 +33,10 @@ export default function DataList({ value, onChange }: DataListProps) {
                     {filteredGames.map((game, index) => (
                         <li
                             key={index}
-                            onClick={() => onChange(game)}
+                            onClick={() => onChange(game.name)}
                             className="px-4 py-2.5 text-sm text-slate-300 hover:bg-blue-600 hover:text-white cursor-pointer transition-all duration-150 flex items-center justify-between font-medium"
                         >
-                            <span>{game}</span>
+                            <span>{game.name}</span>
                         </li>
                     ))}
                 </ul>
