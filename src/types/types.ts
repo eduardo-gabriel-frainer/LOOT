@@ -2,6 +2,7 @@ export type gameSave = {
     appid: number,
     name: string,
     image?: string | null,
+    description?: string | null,
     updatedAt: Date
 }
 
