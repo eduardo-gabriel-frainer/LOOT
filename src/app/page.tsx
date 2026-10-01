@@ -6,7 +6,7 @@ export const revalidate = 0;
 
 export default async function Home() {
 
-  const jogos = await getJogos(20);
+  const jogos = await getJogos();
 
   return (
     <div className="flex flex-col text-center pt-10 text-white items-center">
