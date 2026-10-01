@@ -1,6 +1,9 @@
 import SearchInput from "@/components/ui/Search";
 import getJogos from "@/services/getJogos";
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function Home() {
 
   const jogos = await getJogos(20);
