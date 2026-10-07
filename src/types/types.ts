@@ -11,5 +11,6 @@ export type game = {
     appid: number,
     name: string,
     image?: string | null,
+    description?: string | null
     updatedAt: Date
 }

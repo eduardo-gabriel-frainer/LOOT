@@ -15,6 +15,10 @@ export default function Search({ games }: SearchProps) {
     const [selectedGame, setSelectedGame] = useState<gameSave | null>(null)
 
     function pesquisar() {
+        if(searchValue.length === 0) {
+            setSelectedGame(null)
+            return
+        }
         const game = games.find(
             (game) =>
                 game.name.toLowerCase().includes(searchValue.toLowerCase())
