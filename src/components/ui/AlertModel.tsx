@@ -5,12 +5,14 @@ import { useState } from "react"
 import Toast from "./Toast"
 
 type AlertModalProps = {
+    appid: number
     gameName: string
     currentPrice: number | string | null
     onClose: () => void
 }
 
 export default function AlertModal({
+    appid,
     gameName,
     onClose,
     currentPrice
@@ -26,10 +28,26 @@ export default function AlertModal({
         currentPrice !== null &&
         target > price
 
-    function criarAlerta() {
+    async function criarAlerta() {
         if (invalidPrice || targetPrice === "") {
             return
         }
+
+        const resposta = await fetch("/api/alertas", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                appid: appid,
+                targetPrice: Number(targetPrice),
+            }),
+        })
+
+    if (!resposta.ok) {
+        console.error("Erro ao criar alerta")
+        return
+    }
 
         setShowToast(true)
 

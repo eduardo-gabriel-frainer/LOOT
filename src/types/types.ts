@@ -14,3 +14,8 @@ export type game = {
     description?: string | null
     updatedAt: Date
 }
+
+export type alertSave = {
+    appid: number,
+    targetPrice: number
+}

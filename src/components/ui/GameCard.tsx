@@ -83,6 +83,7 @@ export default function GameCard({ game }: GameCardProps) {
 
             {modalOpen && (
                 <AlertModal
+                    appid={game.appid}
                     gameName={game.name}
                     currentPrice={currentPrice}
                     onClose={() => setModalOpen(false)}
