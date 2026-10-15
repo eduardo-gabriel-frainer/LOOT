@@ -62,10 +62,6 @@ export default function GameCard({ game }: GameCardProps) {
                     {game.name}
                 </h2>
 
-                <p className="text-gray-400 mt-2">
-                    {game.description || "Descrição não disponível."}
-                </p>
-
                 {currentPrice !== null && (
                     <p className="text-white mt-4 font-semibold">
                         Preço atual: R$ {String(currentPrice).replace('.', ',')}
