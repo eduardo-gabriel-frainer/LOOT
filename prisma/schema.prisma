@@ -16,7 +16,7 @@ model games {
   updatedAt DateTime @default(now())
 }
 
-model Alertas {
+model alertas {
     id          Int      @id @default(autoincrement())
     appid       Int
     targetPrice Decimal
