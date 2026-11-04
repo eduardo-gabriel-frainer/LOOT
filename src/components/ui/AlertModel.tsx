@@ -3,11 +3,13 @@
 import { X } from "lucide-react"
 import { useState } from "react"
 import Toast from "./Toast"
+import { useRouter } from "next/navigation"
 
 type AlertModalProps = {
     appid: number
     gameName: string
     currentPrice: number | string | null
+    img: string | null | undefined
     onClose: () => void
 }
 
@@ -15,10 +17,16 @@ export default function AlertModal({
     appid,
     gameName,
     onClose,
-    currentPrice
+    currentPrice,
+    img
 }: AlertModalProps) {
+      const router = useRouter();
+      
     const [targetPrice, setTargetPrice] = useState("")
     const [showToast, setShowToast] = useState(false)
+    
+    console.log("CCUUUUCUCU" + gameName)
+
 
     const price = Number(currentPrice)
     const target = Number(targetPrice)
@@ -40,6 +48,8 @@ export default function AlertModal({
             },
             body: JSON.stringify({
                 appid: appid,
+                img: img,
+                name: gameName,
                 targetPrice: Number(targetPrice),
             }),
         })
@@ -54,7 +64,10 @@ export default function AlertModal({
         setTimeout(() => {
             setShowToast(false)
             onClose()
-        }, 2500)
+            router.push("/alertas")
+        }, 1000)
+
+        
     }
 
     return (

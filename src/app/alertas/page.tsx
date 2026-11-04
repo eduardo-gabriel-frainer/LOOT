@@ -3,17 +3,21 @@ import getAlertas from "@/services/getAlertas";
 
 export default async function Home() {
 
-  const alertas = await getAlertas();
+  const {alertas, total} = await getAlertas();
+
+  const text = total == 1 ? `${total} Alerta ativo` : `${total} Alertas ativos`
 
   return (
     <div className="p-20">
       <h1 className="mb-2 font-bold text-white sm:text-4xl">
         Meus Alertas
       </h1>
-      <p>1 Alerta ativo</p>
-      {alertas.map((alerta) => (
-         <Card name={String(alerta.appid)} price={10} expectPrice={20} />
-      ))}
+      <p>{text}</p>
+      <div className="flex flex-col gap-5 mt-5">
+        {alertas.map((alerta) => (
+          <Card name={String(alerta.name)} price={10000000} expectPrice={Number(alerta.targetPrice)} img={alerta.img}/>
+        ))}
+      </div>
     </div>
   );
 }

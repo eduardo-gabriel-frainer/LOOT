@@ -17,7 +17,9 @@ model games {
 }
 
 model alertas {
-    id          Int      @id @default(autoincrement())
-    appid       Int
-    targetPrice Decimal
+  id          Int     @id @default(autoincrement())
+  appid       Int
+  name        String  @db.VarChar(255)
+  img       String  @db.VarChar(255)
+  targetPrice Decimal @db.Decimal(10, 2)
 }

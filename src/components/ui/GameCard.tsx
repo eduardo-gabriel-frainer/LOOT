@@ -54,7 +54,7 @@ export default function GameCard({ game }: GameCardProps) {
                     <img
                         src={image}
                         alt={game.name}
-                        className="w-full h-48 object-cover rounded-lg mb-4"
+                        className="w-full h-60 object-cover rounded-lg mb-4"
                     />
                 )}
 
@@ -81,6 +81,7 @@ export default function GameCard({ game }: GameCardProps) {
                 <AlertModal
                     appid={game.appid}
                     gameName={game.name}
+                    img={image}
                     currentPrice={currentPrice}
                     onClose={() => setModalOpen(false)}
                 />
