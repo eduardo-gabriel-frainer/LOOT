@@ -10,8 +10,3 @@ export type game = {
     name: string,
     updatedAt: Date
 }
-
-export type alertSave = {
-    appid: number,
-    targetPrice: number
-}

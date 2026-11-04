@@ -51,6 +51,7 @@ export default function AlertModal({
                 img: img,
                 name: gameName,
                 targetPrice: Number(targetPrice),
+                currentPrice: Number(currentPrice),
             }),
         })
 

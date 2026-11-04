@@ -5,6 +5,7 @@ type alertSave = {
     name: string
     img: string
     targetPrice: number
+    currentPrice: number
 }
 
 export async function saveAlertas(data: alertSave) {
@@ -14,6 +15,7 @@ export async function saveAlertas(data: alertSave) {
             name: data.name,
             img: data.img,
             targetPrice: data.targetPrice,
+            currentPrice: data.currentPrice,
         }
     })
 }

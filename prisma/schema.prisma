@@ -21,4 +21,5 @@ model alertas {
   name        String  @db.VarChar(255)
   img       String  @db.VarChar(255)
   targetPrice Decimal @db.Decimal(10, 2)
+  currentPrice Decimal @db.Decimal(10, 2)
 }

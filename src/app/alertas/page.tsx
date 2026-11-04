@@ -15,7 +15,7 @@ export default async function Home() {
       <p>{text}</p>
       <div className="flex flex-col gap-5 mt-5">
         {alertas.map((alerta) => (
-          <Card name={String(alerta.name)} price={10000000} expectPrice={Number(alerta.targetPrice)} img={alerta.img}/>
+          <Card name={String(alerta.name)} price={Number(alerta.currentPrice)} expectPrice={Number(alerta.targetPrice)} img={alerta.img}/>
         ))}
       </div>
     </div>
