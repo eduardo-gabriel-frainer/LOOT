@@ -2,15 +2,15 @@ type cardProps = {
     name: string,
     price: number,
     expectPrice: number,
-    status: string
+    img?: string
 }
 
-export default function Card({ name, price, expectPrice, status }: cardProps) {
+export default function Card({ name, price, expectPrice, img }: cardProps) {
     return (
         <div className="flex justify-between p-4 items-center bg-gray-800 border rounded-xl border-gray-600">
             <div className="flex">
                 <img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq2MXq2ORdfwLev7s34kACtNVYKp2KIRXwyaV32SnJfg&s=10"
+                    src={img}
                     className="max-h-20 w-35 rounded-xl mr-5"
                 />
                 <div className="flex flex-col text-white justify-center gap-2">
