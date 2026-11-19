@@ -208,15 +208,12 @@ async function processAlert(alerta: Alerta) {
     );
 }
 
-async function main() {
+export async function handler() {
     const alertas = await getPendingAlertas();
 
     for (const alerta of alertas) {
         await processAlert(alerta);
     }
-}
 
-main().catch((error: unknown) => {
-    console.error("Erro ao verificar alertas e enviar emails:", error);
-    process.exitCode = 1;
-});
+    return { checkedAlerts: alertas.length };
+}

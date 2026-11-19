@@ -1,0 +1,12 @@
+{
+  "name": "loot-price-alert-lambda",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@prisma/adapter-mariadb": "7.10.0",
+    "@prisma/client": "7.9.1",
+    "mariadb": "3.5.4",
+    "nodemailer": "10.6.0"
+  }
+}
