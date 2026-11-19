@@ -21,5 +21,5 @@ export async function POST(request: Request) {
         return Response.json({ error: "Email ou senha incorretos." }, { status: 401 });
     }
 
-    return Response.json({ email: user.email });
+    return Response.json({ id: user.id, email: user.email });
 }

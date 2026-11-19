@@ -6,6 +6,7 @@ type alertSave = {
     img: string
     targetPrice: number
     currentPrice: number
+    userId: number
 }
 
 export async function saveAlertas(data: alertSave) {
@@ -16,6 +17,9 @@ export async function saveAlertas(data: alertSave) {
             img: data.img,
             targetPrice: data.targetPrice,
             currentPrice: data.currentPrice,
+            user: {
+                connect: { id: data.userId },
+            },
         }
     })
 }

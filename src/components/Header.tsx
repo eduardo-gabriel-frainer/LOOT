@@ -17,6 +17,7 @@ export default function Header() {
     }, []);
 
     function handleLogout() {
+        window.localStorage.removeItem("loot-user-id");
         window.localStorage.removeItem("loot-email");
         window.dispatchEvent(new Event("loot-auth-change"));
     }

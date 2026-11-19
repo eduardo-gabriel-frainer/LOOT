@@ -25,13 +25,14 @@ export default function AccountForm() {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, password }),
             });
-            const data: { email?: string; error?: string } = await response.json();
+            const data: { id?: number; email?: string; error?: string } = await response.json();
 
-            if (!response.ok || !data.email) {
+            if (!response.ok || !data.id || !data.email) {
                 setError(data.error ?? "Não foi possível concluir a operação.");
                 return;
             }
 
+            window.localStorage.setItem("loot-user-id", String(data.id));
             window.localStorage.setItem("loot-email", data.email);
             window.dispatchEvent(new Event("loot-auth-change"));
             router.push("/");

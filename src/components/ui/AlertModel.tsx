@@ -24,8 +24,7 @@ export default function AlertModal({
       
     const [targetPrice, setTargetPrice] = useState("")
     const [showToast, setShowToast] = useState(false)
-    
-    console.log("CCUUUUCUCU" + gameName)
+    const [error, setError] = useState("")
 
 
     const price = Number(currentPrice)
@@ -41,6 +40,15 @@ export default function AlertModal({
             return
         }
 
+        const storedUserId = window.localStorage.getItem("loot-user-id")
+        const userId = storedUserId ? Number(storedUserId) : NaN
+
+        if (!Number.isInteger(userId) || userId <= 0) {
+            setError("Entre na sua conta antes de criar um alerta.")
+            return
+        }
+
+        setError("")
         const resposta = await fetch("/api/alertas", {
             method: "POST",
             headers: {
@@ -52,11 +60,12 @@ export default function AlertModal({
                 name: gameName,
                 targetPrice: Number(targetPrice),
                 currentPrice: Number(currentPrice),
+                userId,
             }),
         })
 
     if (!resposta.ok) {
-        console.error("Erro ao criar alerta")
+        setError("Não foi possível criar o alerta. Tente novamente.")
         return
     }
 
@@ -135,6 +144,12 @@ export default function AlertModal({
                             igual ou menor que o valor definido.
                         </p>
                     </div>
+
+                    {error && (
+                        <p role="alert" className="mt-4 text-sm text-red-400">
+                            {error}
+                        </p>
+                    )}
 
                     <div className="flex gap-3 mt-5">
                         <button

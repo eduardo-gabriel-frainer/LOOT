@@ -16,17 +16,21 @@ model games {
 }
 
 model alertas {
-  id          Int     @id @default(autoincrement())
-  appid       Int
-  name        String  @db.VarChar(255)
-  img       String  @db.VarChar(255)
-  targetPrice Decimal @db.Decimal(10, 2)
-  currentPrice Decimal @db.Decimal(10, 2)
+  id           Int       @id @default(autoincrement())
+  appid        Int
+  name         String    @db.VarChar(255)
+  img          String    @db.VarChar(255)
+  targetPrice  Decimal   @db.Decimal(10, 2)
+  currentPrice Decimal   @db.Decimal(10, 2)
+  userId       Int?
+  user         users?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  notifiedAt   DateTime?
 }
 
 model users {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique @db.VarChar(191)
-  password  String   @db.VarChar(255)
-  createdAt DateTime @default(now())
+  id        Int       @id @default(autoincrement())
+  email     String    @unique @db.VarChar(191)
+  password  String    @db.VarChar(255)
+  createdAt DateTime  @default(now())
+  alertas   alertas[]
 }
