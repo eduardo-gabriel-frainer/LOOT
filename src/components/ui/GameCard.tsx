@@ -11,7 +11,7 @@ type GameCardProps = {
 
 export default function GameCard({ game }: GameCardProps) {
     const [modalOpen, setModalOpen] = useState(false)
-    const [image, setImage] = useState<string | null>(game.image || null)
+    const [image, setImage] = useState<string | null>(null)
     const [currentPrice, setCurrentPrice] = useState<number | string | null>(null)
 
     useEffect(() => {

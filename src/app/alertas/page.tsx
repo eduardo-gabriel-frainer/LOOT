@@ -1,6 +1,8 @@
 import Card from "@/components/ui/Card";
 import getAlertas from "@/services/getAlertas";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
 
   const {alertas, total} = await getAlertas();
