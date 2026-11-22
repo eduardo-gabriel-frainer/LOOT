@@ -39,9 +39,29 @@ function escapeHtml(value: string) {
 }
 
 async function getGameData(appid: number) {
-    const response = await fetch(
-        `https://store.steampowered.com/api/appdetails?appids=${appid}&cc=br&l=portuguese`
-    );
+    let response: Response;
+
+    try {
+        response = await fetch(
+            `https://store.steampowered.com/api/appdetails?appids=${appid}&cc=br&l=portuguese`
+        );
+    } catch (error) {
+        const cause = error instanceof Error ? error.cause : undefined;
+
+        console.error("Falha ao consultar a API da Steam", {
+            appid,
+            message: error instanceof Error ? error.message : String(error),
+            cause: cause instanceof Error
+                ? {
+                    name: cause.name,
+                    message: cause.message,
+                    code: "code" in cause ? cause.code : undefined,
+                }
+                : cause,
+        });
+
+        throw error;
+    }
 
     if (!response.ok) {
         throw new Error(`Erro ao buscar o jogo ${appid}: ${response.status}`);
