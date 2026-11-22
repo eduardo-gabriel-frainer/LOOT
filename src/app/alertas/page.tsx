@@ -5,7 +5,7 @@ export const dynamic = "force-dynamic";
 
 export default async function Home() {
 
-  const {alertas, total} = await getAlertas();
+  const { alertas, total } = await getAlertas();
 
   const text = total == 1 ? `${total} Alerta ativo` : `${total} Alertas ativos`
 
@@ -16,14 +16,14 @@ export default async function Home() {
       </h1>
       <p>{text}</p>
 
-      {total == 0  ? (
+      {total == 0 ? (
         <div className="flex justify-center">
           <p className="text-2xl mt-50">Nenhum alerta cadastrado</p>
         </div>
       ) : (
         <div className="flex flex-col gap-5 mt-5">
           {alertas.map((alerta) => (
-            <Card name={String(alerta.name)} price={Number(alerta.currentPrice)} expectPrice={Number(alerta.targetPrice)} img={alerta.img}/>
+            <Card name={String(alerta.name)} price={Number(alerta.currentPrice)} expectPrice={Number(alerta.targetPrice)} img={alerta.img} />
           ))}
         </div>
       )}
