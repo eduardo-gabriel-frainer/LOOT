@@ -29,6 +29,23 @@ npm run job:get_alertas
 Configure as variáveis SMTP no `.env` com os dados do seu provedor de email.
 Para Gmail, use uma senha de aplicativo em `SMTP_PASSWORD`.
 
+
+
+
+
+Como rodar no powershel
+    
+cd "$HOME\Downloads"
+
+ssh -i "minha-ec2-chave.pem" ec2-user@3.141.34.222
+
+
+
+
+
+
+
+
 ## Executar os alertas em uma AWS Lambda
 
 1. Gere o pacote de deploy:
