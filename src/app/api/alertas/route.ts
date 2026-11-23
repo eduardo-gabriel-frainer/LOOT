@@ -1,3 +1,4 @@
+import { deleteAlerta, getAlertas } from "@/services/getAlertas";
 import { saveAlertas } from "@/services/saveAlertas";
 
 type AlertRequest = {
@@ -8,6 +9,15 @@ type AlertRequest = {
     currentPrice: number;
     userId: number;
 };
+
+type DeleteAlertRequest = {
+    id: number;
+    userId: number;
+};
+
+function isPositiveInteger(value: unknown): value is number {
+    return typeof value === "number" && Number.isInteger(value) && value > 0;
+}
 
 function isAlertRequest(body: unknown): body is AlertRequest {
     return (
@@ -24,10 +34,30 @@ function isAlertRequest(body: unknown): body is AlertRequest {
         typeof body.img === "string" &&
         typeof body.targetPrice === "number" &&
         typeof body.currentPrice === "number" &&
-        typeof body.userId === "number" &&
-        Number.isInteger(body.userId) &&
-        body.userId > 0
+        isPositiveInteger(body.userId)
     );
+}
+
+function isDeleteAlertRequest(body: unknown): body is DeleteAlertRequest {
+    return (
+        typeof body === "object" &&
+        body !== null &&
+        "id" in body &&
+        "userId" in body &&
+        isPositiveInteger(body.id) &&
+        isPositiveInteger(body.userId)
+    );
+}
+
+export async function GET(request: Request) {
+    const userIdValue = new URL(request.url).searchParams.get("userId");
+    const userId = userIdValue === null ? NaN : Number(userIdValue);
+
+    if (!isPositiveInteger(userId)) {
+        return Response.json({ error: "Usuário inválido." }, { status: 400 });
+    }
+
+    return Response.json(await getAlertas(userId));
 }
 
 export async function POST(req: Request) {
@@ -40,4 +70,23 @@ export async function POST(req: Request) {
     await saveAlertas(body);
 
     return new Response(null, { status: 201 });
+}
+
+export async function DELETE(request: Request) {
+    const body: unknown = await request.json();
+
+    if (!isDeleteAlertRequest(body)) {
+        return Response.json({ error: "Dados do alerta inválidos." }, { status: 400 });
+    }
+
+    const deleted = await deleteAlerta(body.id, body.userId);
+
+    if (!deleted) {
+        return Response.json(
+            { error: "Alerta não encontrado para este usuário." },
+            { status: 404 }
+        );
+    }
+
+    return new Response(null, { status: 204 });
 }

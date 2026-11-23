@@ -1,10 +1,21 @@
 import { prisma } from "@/lib/prisma";
 
-export default async function getAlertas() {
-    const alertas = await prisma.alertas.findMany({});
-    const total = await prisma.alertas.count();
-    
+export async function getAlertas(userId: number) {
+    const alertas = await prisma.alertas.findMany({
+        where: { userId },
+        orderBy: { id: "desc" },
+    });
+
     return {
         alertas,
-        total
-    }}
+        total: alertas.length,
+    };
+}
+
+export async function deleteAlerta(id: number, userId: number) {
+    const result = await prisma.alertas.deleteMany({
+        where: { id, userId },
+    });
+
+    return result.count > 0;
+}
