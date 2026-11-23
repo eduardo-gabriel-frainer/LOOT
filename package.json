@@ -8,7 +8,7 @@
     "start": "next start",
     "job:get_jogos": "node --env-file=.env --import=tsx src/jobs/get_jogos_steam.ts",
     "job:get_alertas": "node --env-file=.env --import=tsx src/jobs/run_get_send_email.ts",
-    "build:lambda:get_alertas": "prisma generate && esbuild src/jobs/get_send_email.ts --bundle --platform=node --target=node22 --format=esm --external:@prisma/client/runtime/client --external:@prisma/adapter-mariadb --external:mariadb --external:nodemailer --outfile=dist/get_send_email.mjs && node -e \"const fs=require('node:fs'); fs.copyFileSync('lambda/package.json','dist/package.json'); fs.copyFileSync('lambda/package-lock.json','dist/package-lock.json')\" && npm ci --prefix dist --omit=dev"
+    "build:lambda:get_alertas": "node -e \"const fs=require('node:fs'); if(fs.existsSync('dist/get_send_email.js')) fs.unlinkSync('dist/get_send_email.js')\" && prisma generate && esbuild src/jobs/get_send_email.ts --bundle --platform=node --target=node22 --format=esm --external:@prisma/client/runtime/client --external:@prisma/adapter-mariadb --external:mariadb --external:nodemailer --outfile=dist/get_send_email.mjs && node -e \"const fs=require('node:fs'); fs.copyFileSync('lambda/package.json','dist/package.json'); fs.copyFileSync('lambda/package-lock.json','dist/package-lock.json')\" && npm ci --prefix dist --omit=dev"
   },
   "dependencies": {
     "@prisma/adapter-mariadb": "^7.10.0",
