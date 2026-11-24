@@ -45,12 +45,23 @@
    ```bash
    npm run job:get_alertas
 
-7. Entrar via ssh nas EC2 
+7. Entrar via ssh na EC2 do next 
 
 cd "$HOME\Downloads"
 
-ssh -i "minha-ec2-chave.pem" ec2-user@3.141.34.222
-   ```
+ssh -i "minha-ec2-chave.pem" ec2-user@13.184.95.128
+
+http://13.184.95.128:3000
+
+8. Entrar via shh na grafana
+
+cd "$HOME\Downloads"
+
+ssh -i "minha-ec2-chave.pem" -L 3001:127.0.0.1:3000 ec2-user@18.117.147.250
+
+LEMBRAR DE COLOCAR MY IP NO INBUD RULES DA EC2 DE MONITORAMENTO
+
+http://localhost:3001
 
 ## Implantação
 
